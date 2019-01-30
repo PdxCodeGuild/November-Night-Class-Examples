@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1>All Posts</h1>
+
+{% for post in posts %}
+<div class="post">
+    <div class="title">
+        <a href="{% url 'posts:retrieve' id=post.id %}">{{ post.title }}</a>
+    </div>
+    <div class="body">
+        {{ post.body }}
+    </div>
+</div>
+{% endfor %}
+{% endblock content %}
