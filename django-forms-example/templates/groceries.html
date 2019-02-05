@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <h1>Groceries!</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button>Add Item</button>
+    </form>
+
+    {% for item in items %}
+    <div class="grocery-item">
+        <strong>{{ item.name }}</strong>: {{ item.quantity }}
+    </div>
+    {% endfor %}
+</body>
+</html>
