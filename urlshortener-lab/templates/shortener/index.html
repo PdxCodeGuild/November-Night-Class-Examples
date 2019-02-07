@@ -1,0 +1,10 @@
+{% extends "shortener/layout.html" %}
+
+{% block content %}
+<h1>Shortener</h1>
+<form method="POST">
+    {% csrf_token %}
+    <input type="text" name="url" placeholder="Enter a URL...">
+    <button>Shorten!</button>
+</form>
+{% endblock content %}
