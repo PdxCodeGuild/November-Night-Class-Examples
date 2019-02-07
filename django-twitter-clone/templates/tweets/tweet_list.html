@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1>Tweets</h1>
+{% for tweet in object_list %}
+    <div>{{ tweet.body }}</div>
+{% empty %}
+    <div>No tweets.</div>
+{% endfor %}
+{% endblock content %}

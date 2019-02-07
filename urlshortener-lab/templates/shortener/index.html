@@ -2,6 +2,13 @@
 
 {% block content %}
 <h1>Shortener</h1>
+{% if errors %}
+    <ul style="background:red; color:white">
+    {% for error in errors %}
+    <li>{{ error }}</li>
+    {% endfor %}
+    </ul>
+{% endif %}
 <form method="POST">
     {% csrf_token %}
     <input type="text" name="url" placeholder="Enter a URL...">

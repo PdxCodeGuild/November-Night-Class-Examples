@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    <p>{{ object.body }}</p>
+    <p>{{ object.posted_at }}</p>
+    <button>Delete Tweet</button>
+</form>
+{% endblock content %}

@@ -5,18 +5,26 @@ from .models import ShortURL
 
 
 def index(request):
+    errors = []
     if request.method == 'POST':
         # From the HTML form
         form_url = request.POST['url']
+        
+        if form_url == '':
+            errors.append('Please enter a url!')
+        else:
+            if ShortURL.objects.filter(url=form_url).exists():
+                url = ShortURL.objects.get(url=form_url)
+            else:
+                # New ShortURL
+                url = ShortURL()
+                url.url = form_url
+                url.generate_code()
+                url.save()
 
-        # New ShortURL
-        url = ShortURL()
-        url.url = form_url
-        url.generate_code()
-        url.save()
-        return redirect('shortener:preview', code=url.code)
+            return redirect('shortener:preview', code=url.code)
 
-    return render(request, 'shortener/index.html')
+    return render(request, 'shortener/index.html', {'errors': errors})
 
 
 def preview(request, code):
